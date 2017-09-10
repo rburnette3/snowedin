@@ -45,6 +45,8 @@ export default class Login extends Component {
   }
 
   render() {
+    const resortKey = {key: '54883438'};
+    console.log(this.props);
     return(
       <div>
 
@@ -55,6 +57,8 @@ export default class Login extends Component {
         <button onClick={this.login}>Log In</button>}
 
       </div>
+
+      <button onClick={() => { this.props.fetchData(resortKey)}}>click me</button>
 
 
         <form>
