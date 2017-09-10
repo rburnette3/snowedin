@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from '../Login/Login';
+import LoginContainer from '../Containers/LoginContainer';
 
 
 
@@ -15,9 +15,8 @@ export default class App extends Component {
 
           <h2>Snowedin</h2>
         </div>
-
-        <Login />
-      </div>
-    );
+          <LoginContainer />
+        </div>
+      );
+    }
   }
-}
