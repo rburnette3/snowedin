@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Login from '../Login/Login';
-import Firebase from '../firebase/firebase';
+
 
 
 

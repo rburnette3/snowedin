@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App/App';
-// import { Provider } from 'react-redux';
+import configureStore from './Store/ConfigureStore'
+import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
 // import rootReducer from './Reducers/index';
 
@@ -10,9 +11,8 @@ import App from './App/App';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
 
-// const store = configureStore(devTools)
-//   rootReducer,
-//   devTools
+const store = configureStore(devTools)
+
 
 
 
@@ -20,8 +20,8 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_E
 
 
 ReactDOM.render(
-  // <Provider store ={store}>
-  <App />,
-  // </Provider>,
+  <Provider store ={store}>
+  <App />
+  </Provider>,
   document.getElementById('root')
 );
