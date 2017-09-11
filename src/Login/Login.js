@@ -1,102 +1,89 @@
 import React, { Component } from 'react';
 import './Login.css';
 import firebase, { auth, provider } from '../firebase.js';
+import LoginContainer from '../Containers/LoginContainer';
 
 
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super()
     this.state = {
       email: '',
       password: '',
-      user: null,
+      user: ''
     }
-    this.getValue = this.getValue.bind(this);
 
 
+    this.logout = this.logout.bind(this);
+    this.signUp = this.signUp.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
-  getValue(e) {
+
+  grabValue(e) {
     this.setState({
       [e.target.title]: e.target.value
+  })
+}
+
+logout() {
+  auth.signOut()
+    .then(() => {
+      this.setState({
+        email: '',
+        password: '',
+        user:null,
+        isLoggedIn: false
+      })
+      console.log(this.state);
     })
-    console.log(this.state)
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const usersRef = firebase.database().ref('users');
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    }
-    usersRef.push(user);
-    this.setState({
-      email: '',
-      password: ''
-    });
-  }
-
-  search(e) {
-    this.setState({
-      [e.target.search]: e.target.value
-    })
-  }
-
-  render() {
-    const resortKey = {key: '54883438'};
-    console.log(this.props);
-    return(
-      <div>
-
-      <div className='login-wrapper'>
-      {this.state.user ?
-        <button onClick={this.logout}>Log Out</button>
-        :
-        <button onClick={this.login}>Log In</button>}
-
-      </div>
-
-      <button onClick={() => { this.props.fetchData(resortKey)}}>click me</button>
-
-
-        <form>
-
-          <input className='user-input'
-            title='email' type="text" value={ this.state.email }
-            placeholder='Email'
-            onChange={(e) => this.getValue(e)} />
-          <input className='user-input'
-            title='password' type="text" value={ this.state.password }
-            placeholder= 'Password'
-            onChange={(e) => this.getValue(e)} />
-
-          <button className='form-btn'
-            onClick={(e) => {
-              this.handleSubmit(e)}}>
-              Log In
-          </button>
-
-          <button className='form-btn'
-            onClick={(e) => {
-              e.preventDefault();
-              this.props.addUser(this.state)}}> Create New User
-          </button>
-        </form>
-      </div>
-    )
-  }
-
-
 }
 
 
 
+signUp() {
+  const {email, password} = this.state
+  auth.createUserWithEmailAndPassword(email, password)
+  .then((response) => {console.log('res', response)
+  })
+  .catch(err => console.log('ERR', err))
+}
 
-  // componentDidMount(){
-  //   fetch('http://api.weatherunlocked.com/api/resortforecast/54883438?app_id=d637cec6&app_key=ecc28c74339618877a38b8527cea5290')
-  //     .then(response => response.json());
-  //     .then(parsedResponse => {
-  //       this.setState({snowdata: object}));
-  // }
+signIn() {
+  const {email, password} = this.state
+  auth.signInWithEmailAndPassword(email, password)
+  .then((response) => {console.log('RES', response)
+  })
+  .catch(err => console.log('ERR', err))
+}
+
+
+  render() {
+    const resortKey = {key: '54883438'};
+
+    return(
+      <div>
+        <button onClick={() => { this.props.fetchData(resortKey)}}>Make Da Call</button>
+
+        <input
+            title='email' type="email" value={this.state.email}
+            placeholder="email"
+            onChange={(e) => this.grabValue(e)} />
+          <input
+            title='password' type="password"
+            placeholder="password"
+            onChange={(e) => this.grabValue(e)} />
+        {this.state.user ?
+          <button onClick={this.logout} className='login-btn'>Log Out</button>
+          :
+          <button onClick={this.signIn} className='login-btn'>Log In</button>
+        }
+      <button className='sign-up' onClick={this.signUp} >Sign Up</button>
+
+      </div>
+    )
+  }
+}
+
+export default LoginContainer(Login);
