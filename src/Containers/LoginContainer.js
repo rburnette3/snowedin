@@ -1,12 +1,19 @@
-import Login from '../Login/Login';
 import { connect } from 'react-redux';
 import { fetchData } from '../Actions';
 
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (store) => {
   return {
-  fetchData: (resortKey) => dispatch(fetchData(resortKey))
-}
+    resortData: store.fetchedData,
+  }
 }
 
-export default connect (null, mapDispatchToProps)(Login)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (resortKey) => dispatch(fetchData(resortKey))
+  }
+}
+
+
+export default connect (mapStateToProps, mapDispatchToProps)

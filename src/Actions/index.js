@@ -9,31 +9,46 @@ export const fetchData = (resortKey) => {
       return response;
     })
     .then(response => response.json())
-    .then(parsedResponse => console.log('pass', parsedResponse))
+    .then(parsedResponse => dispatch(fetchSuccess(parsedResponse)))
     .catch(error => console.log('ERROR', error))
   }
 }
 
+export const fetchSuccess = (parsedResponse) =>{
+  return {
+    type: 'FETCH_SUCCESS',
+    data: parsedResponse
+  }
+}
 
-// export const moviesFetchData = (url) => {
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT'
+  }
+}
+
+/////login/////
+
+// export const logIn = (user) => {
 //   return dispatch => {
-//     fetch(url)
-//       .then(response => response.json())
-//       .then(object => object.results)
-//       .then(array => array.map(movie => Object.assign(movie, {fav: null, movie_id: movie.id})))
-//       .then(resultsArray => dispatch(moviesFetchDataSuccess(resultsArray)))
-//       .catch(error => console.log('ERROR', error))
+//     login() {
+//       auth.signInWithPopup(provider)
+//         .then((result) => {
+//           const user = result.user;
+//           console.log(result);
+//           this.setState({
+//             user,
+//             isLoggedIn: true
+//           });
+//           console.log(this.state);
+//         });
+//     }
 //   }
 // }
-
-
-
-
-
-
-  // componentDidMount(){
-  //   fetch('http://api.weatherunlocked.com/api/resortforecast/54883438?app_id=d637cec6&app_key=ecc28c74339618877a38b8527cea5290')
-  //     .then(response => response.json());
-  //     .then(parsedResponse => {
-  //       this.setState({snowdata: object}));
-  // }
+//
+// export const loginSuccess = (user) => {
+//   return {
+//     type: 'LOGIN_SUCCESS',
+//     user
+//   }
+// }
