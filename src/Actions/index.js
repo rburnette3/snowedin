@@ -29,26 +29,16 @@ export const signOut = () => {
 
 /////login/////
 
-// export const logIn = (user) => {
-//   return dispatch => {
-//     login() {
-//       auth.signInWithPopup(provider)
-//         .then((result) => {
-//           const user = result.user;
-//           console.log(result);
-//           this.setState({
-//             user,
-//             isLoggedIn: true
-//           });
-//           console.log(this.state);
-//         });
-//     }
-//   }
-// }
-//
-// export const loginSuccess = (user) => {
-//   return {
-//     type: 'LOGIN_SUCCESS',
-//     user
-//   }
-// }
+  export const loginSuccess = (user) => {
+    return {
+      type: 'LOGIN_SUCCESS',
+      user
+    }
+  }
+
+  export const createSuccess = (user) => {
+    return {
+      type: 'CREATE_USER_SUCCESS',
+      user
+    }
+  }
