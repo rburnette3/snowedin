@@ -13,12 +13,13 @@ form {
 }
 
 .user-input {
-  width: 100%;
+  width: 75%;
   height: 50px;
   display: block;
+  margin: auto;
 }
 
 .form-btn {
-  width: 100%;
+  width: 75%;
   height: 50px;
 }
