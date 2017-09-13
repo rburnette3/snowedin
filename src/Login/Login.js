@@ -1,100 +1,121 @@
-import React, { Component } from 'react';
-import './Login.css';
-import firebase, { auth, provider } from '../firebase.js';
-import LoginContainer from '../Containers/LoginContainer';
-
-
-
-class Login extends Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      user: ''
-    }
-
-
-    this.logout = this.logout.bind(this);
-    this.signUp = this.signUp.bind(this);
-    this.signIn = this.signIn.bind(this);
-  }
-
-
-  grabValue(e) {
-    this.setState({
-      [e.target.title]: e.target.value
-  })
-}
-
-logout() {
-  auth.signOut()
-    .then(() => {
-      this.setState({
-        email: '',
-        password: '',
-        user:null,
-        isLoggedIn: false
-      })
-      console.log(this.state);
-    })
-}
-
-
-
-signUp() {
-  const {email, password} = this.state
-  auth.createUserWithEmailAndPassword(email, password)
-  .then((response) => {
-    this.props.createSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
-  })
-  .catch(err => console.log('ERR', err))
-}
-
-signIn() {
-  const {email, password} = this.state
-  console.log(this.props)
-  auth.signInWithEmailAndPassword(email, password)
-  .then((response) => {
-    this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
-  })
-  .catch(err => console.log(this.store))
-}
-
-
-  render() {
-    const resortKey = {key: '54883438'};
-
-    return(
-      <div>
-        <button onClick={() => { this.props.fetchData(resortKey)}}>Make Da Call</button>
-
-        <input
-            className='user-input' title='username' type="username" value={this.state.username}
-            placeholder="username"
-            onChange={(e) => this.grabValue(e)} />
-        <input
-            className='user-input' title='email' type="email" value={this.state.email}
-            placeholder="email"
-            onChange={(e) => this.grabValue(e)} />
-          <input
-            className='user-input' title='password' type="password"
-            placeholder="password"
-            onChange={(e) => this.grabValue(e)} />
-        {this.state.user ?
-          <button className='form-btn' onClick={() => {this.logout()}} >Log Out</button>
-          :
-          <button className='form-btn' onClick={() => {this.signIn()}} >Log In</button>
-        }
-      <button className='form-btn' onClick={() => {this.signUp()}} >Sign Up</button>
-
-      </div>
-    )
-  }
-}
-
-export default LoginContainer(Login);
+// import React, { Component } from 'react';
+// import './Login.css';
+// import firebase, { auth, provider } from '../firebase.js';
+// import LoginContainer from '../Containers/LoginContainer';
+// import Navigation from '../Navigation/Navigation';
+// import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
+//
+//
+//
+// class Login extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       username: '',
+//       email: '',
+//       password: '',
+//       user: ''
+//     }
+//
+//
+//     this.logout = this.logout.bind(this);
+//     this.signUp = this.signUp.bind(this);
+//     this.signIn = this.signIn.bind(this);
+//   }
+//
+//
+//   grabValue(e) {
+//     this.setState({
+//       [e.target.title]: e.target.value
+//   })
+// }
+//
+// logout() {
+//   auth.signOut()
+//     .then(() => {
+//       this.setState({
+//         email: '',
+//         password: '',
+//         user:null,
+//         isLoggedIn: false
+//       })
+//       console.log(this.state);
+//     })
+// }
+//
+//
+//
+// signUp() {
+//   const {email, password} = this.state
+//   auth.
+//   WithEmailAndPassword(email, password)
+//   .then((response) => { console.log(response);
+//     this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
+//   })
+//   .catch(err => console.log('ERR', err))
+// }
+//
+// signIn() {
+//   const {email, password} = this.state
+//   auth.signInWithEmailAndPassword(email, password)
+//   .then((response) => { console.log(response);
+//     this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
+//   })
+//   .catch(err => console.log(this.store))
+// }
+//
+// currentUser() {
+//   firebase.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//       //user is signed in//
+//     } else {
+//
+//     }
+//   })
+// }
+//
+//
+//   render() {
+//     const resortKey = {key: '54883438'};
+//
+//     return(
+//       <div>
+//
+//
+//
+//
+//
+//         <button onClick={() => { this.props.fetchData(resortKey)}}>Make Call</button>
+//
+//           <input
+//             className='user-input' title='username' type="text"
+//             value={this.state.username}
+//             placeholder='username'
+//             onChange={(e) => this.grabValue(e)} />
+//           <input
+//             className='user-input' title='email' type="email" value={this.state.email}
+//             placeholder="email"
+//             onChange={(e) => this.grabValue(e)} />
+//           <input
+//             className='user-input' title='password' type="password"
+//             placeholder="password"
+//             onChange={(e) => this.grabValue(e)} />
+//             {this.state.user ?
+//           <button className='form-btn' onClick={() => {this.logout()}} >Log Out</button>
+//           :
+//           <button className='form-btn' onClick={() => {this.signIn()}} >Log In</button>
+//         }
+//           <button className='form-btn' onClick={() => {this.signUp()}} >Sign Up</button>
+//
+//           <Navigation />
+//
+//
+//       </div>
+//     )
+//   }
+// }
+//
+// export default LoginContainer(Login);
 
 // {
 //   "uid": "8OQ3X7HjTNXHGOqzYW2znwao9E02",

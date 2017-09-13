@@ -17,13 +17,3 @@ export const loginUser = (state = {}, action) => {
       return state
   }
 }
-
-export const createUser = (state = {}, action) => {
-  switch (action.type) {
-    case 'CREATE_USER_SUCCESS':
-      return action.user
-
-      default:
-      return state
-  }
-}
