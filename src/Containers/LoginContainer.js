@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchData, loginSuccess, createSuccess } from '../Actions';
+import { fetchData, loginSuccess } from '../Actions';
+import Signin from '../Login/Signin';
+import { push } from 'react-router-redux';
 
 
 const mapStateToProps = (store) => {
@@ -14,10 +16,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (resortKey) => dispatch(fetchData(resortKey)),
     loginSuccess: (user) => dispatch(loginSuccess(user)),
-    createSuccess: (user) => dispatch(createSuccess(user)),
+    changeRoute:(url) => dispatch(push(url))
 
   }
 }
 
 
-export default connect (mapStateToProps, mapDispatchToProps)
+export default connect(mapStateToProps, mapDispatchToProps)
