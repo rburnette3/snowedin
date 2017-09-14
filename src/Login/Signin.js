@@ -4,7 +4,7 @@ import firebase, { auth, provider } from '../firebase.js';
 import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
 import LoginContainer from '../Containers/LoginContainer';
 
- export class Signin extends Component {
+class Signin extends Component {
   constructor() {
     super()
     this.state = {
@@ -35,7 +35,7 @@ signIn() {
 
 
   render() {
-    console.log('props: ', this.props)
+    // console.log('props: ', this.props)
 
     if(this.props.loginUser.email) {
       return <Redirect to={'/Search'} />

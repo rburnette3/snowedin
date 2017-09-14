@@ -17,13 +17,25 @@ class App extends Component {
         <div className="App-header">
           <h1>Snowedin</h1>
         </div>
-        <Route exact path='/Signin'
+        <Route exact path='/signin'
             render={() => <Signin />}
             />
-        <Route exact path='/Signup'
+        <Route exact path='/signin' component={Signin} />
+        <Route exact path='/signup'
             render={() => <Signup />}
             />
-        <Route exact path='/Search'
+        // <Route exact path='/' render={() => {
+        //   if (user) {
+        //     props={<button>Sign Out</button>}
+        //   } else {
+        //     props= {
+        //       <button>Sign In</button>
+        //     }
+        //
+        //     return <Header props={props} />
+        //   }
+        // }} />
+        <Route exact path='/search'
               render={() => <Search />}
             />
         <Route exact path='/'

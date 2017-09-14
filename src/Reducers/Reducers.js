@@ -3,8 +3,8 @@ export const fetchedData = (state = {}, action) => {
     case 'FETCH_SUCCESS':
       return action.data
 
-    default:
-    return state
+      default:
+      return state
   }
 }
 
