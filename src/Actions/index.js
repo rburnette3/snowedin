@@ -9,8 +9,10 @@ export const fetchData = (resortKey) => {
       return response;
     })
     .then(response => response.json())
+    .then(response => Object.assign({}, {country: response.country, name: response.name}))
     .then(parsedResponse => dispatch(fetchSuccess(parsedResponse)))
-    .catch(error => console.log('ERROR', error))
+    .then(response => console.log('RESPONSE', response))
+    .catch(error => console.log('ERROR FOOL', error))
   }
 }
 

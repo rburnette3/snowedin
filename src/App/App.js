@@ -5,6 +5,7 @@ import Welcome from '../Welcome/Welcome';
 import Signup from '../Login/Signup';
 import Signin from '../Login/Signin';
 import Search from '../Search/Search';
+import MessageBoard from '../MessageBoard/MessageBoard';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 
@@ -17,19 +18,12 @@ class App extends Component {
         <div className="App-header">
           <h1>Snowedin</h1>
         </div>
-        <Route exact path='/Signin'
-            render={() => <Signin />}
-            />
-        <Route exact path='/Signup'
-            render={() => <Signup />}
-            />
-        <Route exact path='/Search'
-              render={() => <Search />}
-            />
-        <Route exact path='/'
-            render={() => <Welcome />}
-            />
-      </div>
+          <Route exact path='/signin' component={Signin} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/search' component={Search} />
+          <Route exact path='/MessageBoard' component={MessageBoard} />
+          <Route exact path='/' component={Welcome} />
+        </div>
 
       );
     }
