@@ -1,0 +1,10 @@
+.card-display {
+  border: 2px solid red;
+  height: 250px;
+  width: 250px;
+}
+
+.card-text {
+  color: red;
+  font-size: 20px;
+}
