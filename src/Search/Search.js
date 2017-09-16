@@ -21,18 +21,17 @@ class Search extends Component {
 
   render() {
 
-    console.log('THIS IS THE LOG',this.props, this.state, this.props.resortData.country);
+    console.log('THIS IS THE LOG',this.props, this.state, this.props.resortData.country, 'NAME!!!!!', this.props.resortData.name);
 
     const resortKey = {key: '54883438'};
 
     if(this.props.resortData.country === this.state.location){
       return (
         <div>
-          <ResortCard />
+          <ResortCard props={this.props}  />
         </div>
       )
     }
-
 
     return(
 
