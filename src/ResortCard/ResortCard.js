@@ -12,7 +12,7 @@ const ResortCard = ({props}) => {
  return (
 
    <div className='card-display'>
-      <p className='card-text'> { props.name } </p>
+      <p className='card-text'> { props.resortData.name } </p>
       <NavLink to='/MessageBoard' className='nav'> Message </NavLink>
 
     </div>

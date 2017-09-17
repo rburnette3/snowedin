@@ -44,11 +44,11 @@ class MessageBoard extends Component {
 
     firebase.database().ref('messages/' +nextMessage.id).set(nextMessage)
 
-    // var list = Object.assign([], this.state.messages)
-    // list.push(nextMessage)
-    // this.setState({
-    //   messages: list
-    // })
+    var list = Object.assign([], this.state.messages)
+    list.push(nextMessage)
+    this.setState({
+      messages: list
+    })
   }
 
 render() {

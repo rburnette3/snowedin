@@ -4,3 +4,12 @@
   padding: 20px;
   color: white;
 }
+
+li {
+  list-style: none;
+  background: #ff9999;
+  padding: 20px;
+  margin: 20px;
+  width: 100px;
+
+}
