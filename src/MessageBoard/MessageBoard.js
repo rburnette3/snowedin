@@ -59,13 +59,17 @@ render() {
   })
 
   return (
-    <div>
-      <h1>Message Board</h1>
-        <ol>
-          {currentMessage}
-        </ol>
-          <input onChange={this.updateMessage} type='text' placeholder='Enter Message'/>
-          <button onClick={this.sendMessage}>Send</button>
+    <div className='messageboard-body'>
+      <section className='messageboard-wrapper'>
+        <h1 className='messageboard-title'>Message Board</h1>
+      </section>
+          <ol className='message-display'>
+            {currentMessage}
+            </ol>
+            <section className='message-input-wrapper'>
+              <input className='message-input' onChange={this.updateMessage} type='text' placeholder='Enter Message'/>
+              <button className='message-btn' onClick={this.sendMessage}>Send</button>
+            </section>
     </div>
     )
   }

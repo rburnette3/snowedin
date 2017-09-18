@@ -13,7 +13,9 @@ const ResortCard = ({props}) => {
 
    <div className='card-display'>
       <p className='card-text'> { props.resortData.name } </p>
-      <NavLink to='/MessageBoard' className='nav'> Message </NavLink>
+      <section className='message-link-wrapper'>
+        <NavLink className='message-link' to='/MessageBoard'> Message </NavLink>
+      </section>
 
     </div>
 
