@@ -1,6 +1,46 @@
+.login-wrapper {
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 50px;
+  border-color: #5E99BD;
+  box-shadow: 0 0 100px #5E99BD;
+  height: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  margin-top: 10%;
+}
+
+.link-wrapper {
+  border: 2px solid #FFF;
+  box-shadow: 0 0 10px #5E99BD;
+  width: 60%;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 0;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.link-wrapper:hover {
+  background-color: #5E99BD;
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+}
+
 .nav {
-  border: 1px solid blue;
-  margin: 50px;
+  padding: 35px;
+  text-decoration: none;
+  color: #FFF;
+  font-size: 45px;
+}
 
-
+h1 {
+  color: #FFF;
+  font-size: 100px;
+  font-family: 'Stardos Stencil', cursive;
 }

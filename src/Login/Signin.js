@@ -10,7 +10,8 @@ class Signin extends Component {
     this.state = {
       email: '',
       password: '',
-      user: ''
+      isSignedIn: false,
+      user: null
     }
 
     this.signIn = this.signIn.bind(this);
@@ -21,30 +22,28 @@ class Signin extends Component {
     this.setState({
       [e.target.title]: e.target.value
   })
-
 }
 
-
-signIn() {
-  const {email, password} = this.state
-  auth.signInWithEmailAndPassword(email, password)
-  .then((response) => { console.log(response);
-    this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
-  })
-  .catch(err => console.log(this.store))
+  signIn() {
+    const {email, password} = this.state
+    auth.signInWithEmailAndPassword(email, password)
+    .then((result) => { console.log(result, 'USER', result.user);
+      this.props.loginSuccess(Object.assign({}, {id: result.uid}, {email: result.email}, {name: result.displayName}))
+    })
+    .catch(err => console.log(this.store))
 }
 
 
   render() {
-    // console.log('props: ', this.props)
 
     if(this.props.loginUser.email) {
       return <Redirect to={'/Search'} />
     }
+
     return(
       <div>
+      <section className='login-wrapper'>
       <h1>Sign In</h1>
-
           <input
             className='user-input' title='email' type="email" value={this.state.email}
             placeholder="email"
@@ -59,6 +58,7 @@ signIn() {
                                                     this.props.changeRoute('./')}}
                                                      >Log In</button>
 
+        </section>
       </div>
     )
   }

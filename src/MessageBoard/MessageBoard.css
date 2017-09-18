@@ -1,15 +1,93 @@
-.App-header {
-  background-color: #45819C;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.messageboard-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.messageboard-wrapper {
+  height: 15vh;
+  width: 80%;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 50px;
+  border-color: #5E99BD;
+  box-shadow: 0 0 100px #5E99BD;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.messageboard-title {
+  font-size: 100px;
+}
+
+.message-display {
+  margin: auto;
+
+  height: 450px;
+  width: 80%;
+  height: 75vh;
 }
 
 li {
   list-style: none;
-  background: #ff9999;
+  background: yellow;
   padding: 20px;
   margin: 20px;
-  width: 100px;
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  width: 80%;
+  margin: 10px auto;
+}
 
+.message-input-wrapper {
+  align-self: flex-end;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 10vh;
+}
+
+.message-input {
+  height: 50px;
+  width: 70%;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  outline: none;
+  font-size: 36px;
+  color: #FFF;
+}
+
+.message-input::placeholder {
+  color: #FFF;
+}
+
+.message-btn {
+  height: 50px;
+  width: 30%;
+  background-color: #5E99BD;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
+  margin-left: 10px;
+  outline: none;
+}
+
+.message-btn:hover {
+background-color: #5E99BD;
+box-shadow: 0 0 10px #5E99BD;
+color: #FFF;
+cursor: pointer;
+outline: none;
+-webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
 }

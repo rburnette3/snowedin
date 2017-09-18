@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Signin.css';
 import firebase, { auth, provider } from '../firebase.js';
 import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
+import LoginContainer from '../Containers/LoginContainer';
 
 class Signup extends Component {
   constructor() {
@@ -25,10 +26,9 @@ class Signup extends Component {
 
 signUp() {
   const {email, password} = this.state
-  auth.
-  WithEmailAndPassword(email, password)
+  auth.createUserWithEmailAndPassword(email, password)
   .then((response) => { console.log(response);
-    this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}, {username: response.displayName} ))
+    this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}))
   })
   .catch(err => console.log('ERR', err))
 }
@@ -36,8 +36,13 @@ signUp() {
 
   render() {
 
+    if(this.props.loginUser.email) {
+      return <Redirect to={'/Search'} />
+    }
+
     return(
       <div>
+      <section className='login-wrapper'>
       <h1>Sign up</h1>
 
           <input
@@ -48,11 +53,15 @@ signUp() {
             className='user-input' title='password' type="password"
             placeholder="password"
             onChange={(e) => this.grabValue(e)} />
-          <button className='form-btn' onClick={() => {this.signUp()}} >Log   In</button>
+          <button className='form-btn' onClick={(e) => {
+            this.signUp()
+            this.props.changeRoute('./')
+            }} >Sign Up</button>
+            </section>
 
       </div>
     )
   }
 }
 
-export default Signup;
+export default LoginContainer(Signup);

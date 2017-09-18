@@ -1,0 +1,37 @@
+.user-input {
+  height: 75px;
+  width: 70%;
+  border-radius: 10px;
+  border: 2px solid #FFF;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  outline: none;
+  font-size: 36px;
+  box-shadow: 0 0 10px #5E99BD;
+}
+
+.user-input::placeholder {
+  font-size: 36px;
+}
+
+.form-btn {
+  height: 75px;
+  width: 70%;
+  background-color: #5E99BD;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
+  outline: none;
+}
+
+.form-btn:hover {
+  background-color: #5E99BD;
+  box-shadow: 0 0 10px #5E99BD;
+  color: #FFF;
+  cursor: pointer;
+  outline: none;
+  -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+}
