@@ -1,6 +1,7 @@
 import React from 'react';
 import './Welcome.css';
 import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
+import firebase, { auth, provider, signOut } from '../firebase.js';
 
 const Welcome = () => {
 
@@ -20,3 +21,6 @@ const Welcome = () => {
 }
 
 export default Welcome;
+
+
+// <button className='form-btn' onClick={(e) => signOut()}>SignOut</button>

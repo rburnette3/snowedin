@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Signin.css';
-import firebase, { auth, provider } from '../firebase.js';
+import firebase, { auth, provider, signOut } from '../firebase.js';
 import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
 import LoginContainer from '../Containers/LoginContainer';
+
 
 class Signin extends Component {
   constructor() {
@@ -13,10 +14,8 @@ class Signin extends Component {
       isSignedIn: false,
       user: null
     }
-
     this.signIn = this.signIn.bind(this);
   }
-
 
   grabValue(e) {
     this.setState({
@@ -33,30 +32,35 @@ class Signin extends Component {
     .catch(err => console.log(this.store))
 }
 
-
   render() {
 
     if(this.props.loginUser.email) {
       return <Redirect to={'/Search'} />
-    }
+}
 
     return(
       <div>
-      <section className='login-wrapper'>
-      <h1>Sign In</h1>
+        <section className='login-wrapper'>
+          <h1>Sign In</h1>
           <input
-            className='user-input' title='email' type="email" value={this.state.email}
+            className='user-input' title='name' type="text" value={this.state.name}
             placeholder="email"
             onChange={(e) => this.grabValue(e)} />
-          <input
-            className='user-input' title='password' type="password"
-            placeholder="password"
-            onChange={(e) => this.grabValue(e)} />
-          <button className='form-btn' onClick={(e) => {
-                                                    e.preventDefault()
+            <input
+              className='user-input' title='email' type="email" value={this.state.email}
+              placeholder="email"
+              onChange={(e) => this.grabValue(e)} />
+            <input
+              className='user-input' title='password' type="password"
+              placeholder="password"
+              onChange={(e) => this.grabValue(e)} />
+            <button className='form-btn' onClick={(e) => {
+                                                      e.preventDefault()
                                                     this.signIn()
                                                     this.props.changeRoute('./')}}
                                                      >Log In</button>
+
+
 
         </section>
       </div>
