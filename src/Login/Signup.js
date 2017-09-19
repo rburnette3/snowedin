@@ -10,12 +10,11 @@ class Signup extends Component {
     this.state = {
       email: '',
       password: '',
-      user: ''
+      user: null
     }
 
     this.signUp = this.signUp.bind(this);
   }
-
 
   grabValue(e) {
     this.setState({
@@ -23,16 +22,14 @@ class Signup extends Component {
   })
 }
 
-
-signUp() {
-  const {email, password} = this.state
-  auth.createUserWithEmailAndPassword(email, password)
-  .then((response) => { console.log(response);
-    this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}))
-  })
-  .catch(err => console.log('ERR', err))
+  signUp() {
+    const {email, password} = this.state
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((response) => { console.log(response);
+      this.props.loginSuccess(Object.assign({}, {id: response.uid}, {email: response.email}))
+    })
+    .catch(err => console.log('ERR', err))
 }
-
 
   render() {
 
@@ -42,23 +39,21 @@ signUp() {
 
     return(
       <div>
-      <section className='login-wrapper'>
-      <h1>Sign up</h1>
-
-          <input
-            className='user-input' title='email' type="email" value={this.state.email}
-            placeholder="email"
-            onChange={(e) => this.grabValue(e)} />
-          <input
-            className='user-input' title='password' type="password"
-            placeholder="password"
-            onChange={(e) => this.grabValue(e)} />
-          <button className='form-btn' onClick={(e) => {
-            this.signUp()
-            this.props.changeRoute('./')
-            }} >Sign Up</button>
-            </section>
-
+        <section className='login-wrapper'>
+          <h1>Sign up</h1>
+            <input
+              className='user-input' title='email' type="email" value={this.state.email}
+              placeholder="email"
+              onChange={(e) => this.grabValue(e)} />
+            <input
+              className='user-input' title='password' type="password"
+              placeholder="password"
+              onChange={(e) => this.grabValue(e)} />
+            <button className='form-btn' onClick={(e) => {
+              this.signUp()
+              this.props.changeRoute('./')
+              }} >Sign Up</button>
+        </section>
       </div>
     )
   }

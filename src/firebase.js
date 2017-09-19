@@ -13,7 +13,8 @@ const config = {
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
-export const database = firebase.database().ref('messages/')
+export const database = firebase.database().ref('messages/');
+export const signOut = () => auth.signOut();
 
 
 

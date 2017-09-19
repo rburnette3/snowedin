@@ -4,11 +4,14 @@ import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
 import firebase, { auth, provider } from '../firebase.js';
 import LoginContainer from '../Containers/LoginContainer';
 
+
+
+
 class MessageBoard extends Component {
   constructor(props, context){
     super(props, context)
     this.state = {
-      newMessage: '',
+      newMessage:'',
       messages: []
     }
 
@@ -17,62 +20,72 @@ class MessageBoard extends Component {
   }
 
   componentDidMount(){
-    console.log("MOUNTED")
-    firebase.database().ref('messages/').on('value', (snapshot) => {
-
+    const messageRef = firebase.database().ref('messages/')
+    messageRef.on('value', (snapshot) => {
       const currentMessages = snapshot.val()
+      const keys = Object.keys(currentMessages)
+      const allMessages = [];
 
-      if (currentMessages != null){
-        this.setState
-      }
+      keys.forEach((message, i) => {
+        allMessages[i] = currentMessages[keys[i]]
     })
-  }
+
+    this.setState(
+      {messages: allMessages}
+    )
+
+    this.props.savedMessages(allMessages)
+  })
+}
+
 
   updateMessage(e) {
-    console.log('updateMessage:' +e.target.value)
     this.setState({
       newMessage: e.target.value
     })
   }
 
   sendMessage(e) {
-    console.log('sendMessage:' +this.state.message)
     const nextMessage = {
-      id: this.state.messages.length,
+      resortKey: '54883438',
+      id: Date.now(),
+      user: 'temp user',
       text: this.state.newMessage
     }
-
+    this.props.sendMessage(nextMessage)
     firebase.database().ref('messages/' +nextMessage.id).set(nextMessage)
-
-    var list = Object.assign([], this.state.messages)
-    list.push(nextMessage)
+    var list = [...this.state.messages, nextMessage]
     this.setState({
       messages: list
     })
   }
 
-render() {
-  const currentMessage = this.state.messages.map((message, i) =>{
+  render() {
+    const currentMessage = this.state.messages.map((message, i) =>{
+      if(message.resortKey === '54883438' )
+      return (
+        <li key = {message.id}>{message.text}</li>
+      )
+    })
+///
     return (
-      <li key = {message.id}>{message.text}</li>
-    )
-  })
+      <div className='messageboard-body'>
+        <section className='messageboard-wrapper'>
+          <h1 className='messageboard-title'>Message Board</h1>
+        </section>
+            <ol className='message-display'>
+              {currentMessage}
 
-  return (
-    <div className='messageboard-body'>
-      <section className='messageboard-wrapper'>
-        <h1 className='messageboard-title'>Message Board</h1>
-      </section>
-          <ol className='message-display'>
-            {currentMessage}
             </ol>
-            <section className='message-input-wrapper'>
-              <input className='message-input' onChange={this.updateMessage} type='text' placeholder='Enter Message'/>
-              <button className='message-btn' onClick={this.sendMessage}>Send</button>
-            </section>
+              <section className='message-input-wrapper'>
+                <input className='message-input' onChange={this.updateMessage} type='text' placeholder='Enter Message'/>
+                <button className='message-btn' onClick={(e) => {
+                  this.sendMessage()
+                }}>Send</button>
+        </section>
     </div>
     )
   }
 }
 
-export default LoginContainer(MessageBoard)
+export default LoginContainer(MessageBoard);

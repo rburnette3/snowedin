@@ -8,9 +8,23 @@ import Search from '../Search/Search';
 import MessageBoard from '../MessageBoard/MessageBoard';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import firebase, { auth, provider } from '../firebase.js';
+// import LoginContainer from '../Containers/LoginContainer';
+
 
 
 class App extends Component {
+
+  // componentDidMount() {
+  //   auth.onAuthStateChanged(user => {
+  //     if(user){
+  //     console.log(user)
+  //     this.props.loginSuccess({
+  //       email: user.email
+  //     })
+  //   }
+  // })
+  // }
 
   render() {
     return (
@@ -26,4 +40,6 @@ class App extends Component {
     }
   }
 
-  export default App;
+export default App
+
+// export default LoginContainer(App);

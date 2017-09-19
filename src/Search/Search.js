@@ -23,36 +23,33 @@ class Search extends Component {
 }
 
   render() {
-
-    console.log('THIS IS THE LOG',this.props, this.state, 'USER',this.state.user, this.props.resortData.country, 'NAME!!!!!', this.props.resortData.name);
-
     const resortKey = {key: '54883438'};
 
     if(this.props.resortData.country === this.state.location){
       return (
         <div>
           <ResortCard props={this.props}  />
-
         </div>
       )
     }
 
     return(
-
       <div>
         <section className='search-wrapper'>
           <h1 className='search-title'>Search Resorts</h1>
-          <input
-            className='user-input' title='location' type="text" value={this.state.location}
-            placeholder="Enter a Country"
-            onChange={(e) => this.grabValue(e)} />
+            <select name='states' id='state-selector'>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="MN">Mikes State</option>
+              <option value="UT">Utah</option>
+            </select>
           <button className='search-btn' onClick={(e) => {
                                                     e.preventDefault()
                                                     this.props.fetchData(resortKey)
                                                     }}
                                                     >Search</button>
 
-          </section>
+        </section>
       </div>
     )
   }
@@ -60,3 +57,17 @@ class Search extends Component {
 
 
 export default LoginContainer(Search);
+
+
+
+
+
+
+
+
+
+
+// <input
+//   className='user-input' title='location' type="text" value={this.state.location}
+//   placeholder="Enter a Country"
+//   onChange={(e) => this.grabValue(e)} />
