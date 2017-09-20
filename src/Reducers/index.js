@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { fetchedData } from './Reducers';
-import { loginUser } from './Reducers';
-import { messages } from './Reducers';
+import { fetchData, loginUser, messages, changeLocation } from './Reducers';
+// import { loginUser } from './Reducers';
+// import { messages } from './Reducers';
 
 
 
 const rootReducer = combineReducers ({
-  fetchedData,
+  fetchData,
   loginUser,
   messages
 

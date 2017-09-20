@@ -6,25 +6,43 @@ import ResortCard from '../ResortCard/ResortCard';
 import Signin from '../Login/Signin';
 
 
+
 class Search extends Component {
   constructor() {
     super()
       this.state = {
-        location: '',
-        resortlist: [],
-        user: ''
+        location: ''
       }
+    this.handleSearch=this.handleSearch.bind(this);
   }
-
   grabValue(e) {
     this.setState({
       [e.target.title]: e.target.value
   })
 }
 
-  render() {
-    const resortKey = {key: '54883438'};
+  changeLocation(e) {
 
+  }
+
+  handleSearch() {
+    fetch(`http://localhost:3001/api/v1/resorts/${this.state.location}`)
+    .then(response => {
+      if(response.status!==200){
+        console.log('fail');
+      }
+      return response;
+    })
+    .then(response => response.json())
+    
+    // .then(response => Object.assign({}, {resort: response.resort, id: response.id}))
+    .then(response => console.log(response))
+    .catch(error => console.log('ERROR FOOL', error))
+  }
+
+
+
+  render() {
     if(this.props.resortData.country === this.state.location){
       return (
         <div>
@@ -37,15 +55,19 @@ class Search extends Component {
       <div>
         <section className='search-wrapper'>
           <h1 className='search-title'>Search Resorts</h1>
-            <select name='states' id='state-selector'>
+            <select id='list' title='location' value={this.state.location} onChange={(e)=>this.grabValue(e)}>
+              <option >Choose a State</option>
               <option value="CA">California</option>
               <option value="CO">Colorado</option>
               <option value="MN">Mikes State</option>
               <option value="UT">Utah</option>
             </select>
-          <button className='search-btn' onClick={(e) => {
+            <button className='search-btn' onClick={(e) => {
                                                     e.preventDefault()
-                                                    this.props.fetchData(resortKey)
+                                                    console.log(this.state)
+
+                                                    this.handleSearch()
+
                                                     }}
                                                     >Search</button>
 
@@ -57,17 +79,3 @@ class Search extends Component {
 
 
 export default LoginContainer(Search);
-
-
-
-
-
-
-
-
-
-
-// <input
-//   className='user-input' title='location' type="text" value={this.state.location}
-//   placeholder="Enter a Country"
-//   onChange={(e) => this.grabValue(e)} />

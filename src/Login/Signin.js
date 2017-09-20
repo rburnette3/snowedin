@@ -11,7 +11,6 @@ class Signin extends Component {
     this.state = {
       email: '',
       password: '',
-      isSignedIn: false,
       user: null
     }
     this.signIn = this.signIn.bind(this);
@@ -26,8 +25,8 @@ class Signin extends Component {
   signIn() {
     const {email, password} = this.state
     auth.signInWithEmailAndPassword(email, password)
-    .then((result) => { console.log(result, 'USER', result.user);
-      this.props.loginSuccess(Object.assign({}, {id: result.uid}, {email: result.email}, {name: result.displayName}))
+    .then((result) => { console.log('SIGN IN RESULT', result);
+      this.props.loginSuccess(Object.assign({}, {id: result.uid}, {email: result.email}))
     })
     .catch(err => console.log(this.store))
 }
@@ -42,10 +41,6 @@ class Signin extends Component {
       <div>
         <section className='login-wrapper'>
           <h1>Sign In</h1>
-          <input
-            className='user-input' title='name' type="text" value={this.state.name}
-            placeholder="email"
-            onChange={(e) => this.grabValue(e)} />
             <input
               className='user-input' title='email' type="email" value={this.state.email}
               placeholder="email"

@@ -37,3 +37,10 @@
         -ms-transform: scale(1.1);
         transform: scale(1.1);
 }
+
+#list{
+  height: 75px;
+  width: 70%;
+  outline: none;
+  font-size: 36px;
+}
