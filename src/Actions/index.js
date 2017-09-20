@@ -16,11 +16,26 @@
 //     .catch(error => console.log('ERROR FOOL', error))
 //   }
 // }
+export const handleFetch = (location) => {
+return dispatch => {
+fetch(`http://localhost:3001/api/v1/resorts/${location}`)
+.then(response => response.json())
+.then(parsedResponse => parsedResponse.map(card => {
+  return Object.assign ({}, {
+    resort: card.resort,
+    id: card.id
+  })
+})
+)
+
+.then(response => dispatch(fetchData(response)))
+}
+}
 
 export const fetchData = (parsedResponse) => {
   return {
     type: 'FETCH_DATA',
-    data: parsedResponse
+    parsedResponse
   }
 }
 
@@ -62,6 +77,5 @@ export const changeLocation = (changedLocation) => {
   return {
     type: 'CHANGE_LOCATION',
     changedLocation
-
   }
 }
