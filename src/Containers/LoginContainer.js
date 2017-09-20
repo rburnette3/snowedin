@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 
 const mapStateToProps = (store) => {
   return {
-    resortData: store.fetchData,
+    fetchData: store.fetchData,
     loginUser: store.loginUser,
     messages: store.messages,
     changeLocation: store.changeLocation,

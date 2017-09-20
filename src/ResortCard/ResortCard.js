@@ -4,7 +4,7 @@ import LoginContainer from '../Containers/LoginContainer';
 import { Route, NavLink, Link, Switch, Redirect } from 'react-router-dom';
 
 
-const ResortCard = ({props}) => {
+const ResortCard = (props) => {
   console.log('CARD PROPS', props )
 
 
@@ -12,7 +12,7 @@ const ResortCard = ({props}) => {
  return (
 
    <div className='card-display'>
-      <p className='card-text'> { props.resortData.name } </p>
+      <p className='card-text'> { props.resort } </p>
       <section className='message-link-wrapper'>
         <NavLink className='message-link' to='/MessageBoard'> Message </NavLink>
       </section>
