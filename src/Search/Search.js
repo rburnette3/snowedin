@@ -11,7 +11,8 @@ class Search extends Component {
   constructor() {
     super()
       this.state = {
-        location: ''
+        location: '',
+        resorts: []
       }
     this.handleSearch=this.handleSearch.bind(this);
   }
@@ -26,27 +27,16 @@ class Search extends Component {
   }
 
   handleSearch() {
-    fetch(`http://localhost:3001/api/v1/resorts/${this.state.location}`)
-    .then(response => {
-      if(response.status!==200){
-        console.log('fail');
-      }
-      return response;
-    })
-    .then(response => response.json())
-    
-    // .then(response => Object.assign({}, {resort: response.resort, id: response.id}))
-    .then(response => console.log(response))
-    .catch(error => console.log('ERROR FOOL', error))
-  }
+    this.props.handleFetch(this.state.location)
 
+}
 
 
   render() {
     if(this.props.resortData.country === this.state.location){
       return (
         <div>
-          <ResortCard props={this.props}  />
+          <ResortCard props= {this.props}  />
         </div>
       )
     }
@@ -64,9 +54,9 @@ class Search extends Component {
             </select>
             <button className='search-btn' onClick={(e) => {
                                                     e.preventDefault()
-                                                    console.log(this.state)
 
                                                     this.handleSearch()
+
 
                                                     }}
                                                     >Search</button>

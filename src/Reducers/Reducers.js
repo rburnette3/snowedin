@@ -1,7 +1,7 @@
-export const fetchData = (state = {}, action) => {
+export const fetchData = (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return action.data
+    case 'FETCH_DATA':
+      return action.parsedResponse
 
       default:
       return state
