@@ -1,34 +1,10 @@
-// export const fetchData = (resortKey) => {
-//
-//   return dispatch => {
-//     fetch('http://localhost:3001/api/v1/resorts/CA')
-//     .then(response => {
-//       if(response.status!==200){
-//         console.log('fail');
-//       }
-//       return response;
-//     })
-//     .then(response => response.json())
-//     // .then(response => Object.assign({}, {country: response.state, name: response.name}))
-//     .then(response => console.log(response))
-//     .then(parsedResponse => dispatch(fetchSuccess(parsedResponse)))
-//     .then(response => console.log('RESPONSE', response))
-//     .catch(error => console.log('ERROR FOOL', error))
-//   }
-// }
 export const handleFetch = (location) => {
-return dispatch => {
-fetch(`http://localhost:3001/api/v1/resorts/${location}`)
-.then(response => response.json())
-.then(parsedResponse => parsedResponse.map(card => {
-  return Object.assign ({}, {
-    resort: card.resort,
-    id: card.id
-  })
-})
-)
-
-.then(response => dispatch(fetchData(response)))
+  return dispatch => {
+    fetch(`http://localhost:3001/api/v1/resorts/${location}`)
+    .then(response => response.json())
+    // .then(response => Object.assign({}, {resort: response.resort, id: response.id}))
+    .then(response => dispatch(fetchData(response)))
+    .then(response => console.log())
 }
 }
 
@@ -79,3 +55,23 @@ export const changeLocation = (changedLocation) => {
     changedLocation
   }
 }
+
+
+// export const fetchData = (resortKey) => {
+//
+//   return dispatch => {
+//     fetch('http://localhost:3001/api/v1/resorts/CA')
+//     .then(response => {
+//       if(response.status!==200){
+//         console.log('fail');
+//       }
+//       return response;
+//     })
+//     .then(response => response.json())
+//     // .then(response => Object.assign({}, {country: response.state, name: response.name}))
+//     .then(response => console.log(response))
+//     .then(parsedResponse => dispatch(fetchSuccess(parsedResponse)))
+//     .then(response => console.log('RESPONSE', response))
+//     .catch(error => console.log('ERROR FOOL', error))
+//   }
+// }
