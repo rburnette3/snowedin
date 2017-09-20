@@ -1,25 +1,27 @@
 import { connect } from 'react-redux';
-import { fetchData, loginSuccess, sendMessage, savedMessages } from '../Actions';
+import { fetchData, loginSuccess, sendMessage,  savedMessages, changeLocation } from '../Actions';
 import { push } from 'react-router-redux';
-
 
 
 const mapStateToProps = (store) => {
   return {
-    resortData: store.fetchedData,
+    resortData: store.fetchData,
     loginUser: store.loginUser,
-    messages: store.messages
+    messages: store.messages,
+    changeLocation: store.changeLocation,
   }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (resortKey) => dispatch(fetchData(resortKey)),
+    fetchData:(location) => dispatch(fetchData(location)),
     loginSuccess: (user) => dispatch(loginSuccess(user)),
     changeRoute:(url) => dispatch(push(url)),
     sendMessage:(message) => (dispatch(sendMessage(message))),
-    savedMessages:(message)=> (dispatch(savedMessages(message)))
+    savedMessages:(message)=> (dispatch(savedMessages(message))),
+    changeLocation:(location)=>
+    (dispatch(changeLocation(location)))
   }
 }
 
